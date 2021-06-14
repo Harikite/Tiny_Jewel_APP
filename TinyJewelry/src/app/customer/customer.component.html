@@ -1,0 +1,55 @@
+<h2> Calculate Gold Price </h2>
+<form [formGroup] = "productForm">
+        <div>
+        <mat-label>Gold Price (per gram)</mat-label>
+        <mat-form-field appearance="outline" style="padding-left: 20px;">
+                <mat-label>Enter Gold Price</mat-label>
+                <input matInput formControlName="goldPrice" />
+                <mat-error>
+                    <span *ngIf="!productForm.get('goldPrice')?.valid && (productForm.get('goldPrice')?.touched || productForm.hasError('whitespace'))">
+                        * Gold Price is required.
+                    </span>
+                </mat-error>
+        </mat-form-field>
+    </div>
+    <div>
+            <mat-label>Weights (grams)</mat-label>
+            <mat-form-field appearance="outline" style="padding-left: 48px;">
+                    <mat-label>Gold Weight</mat-label>
+                    <input matInput formControlName="weight" />
+                    <mat-error>
+                        <span *ngIf="!productForm.get('weight')?.valid && (productForm.get('weight')?.touched || productForm.hasError('whitespace'))">
+                            * Gold Weight is required.
+                        </span>
+                    </mat-error>
+            </mat-form-field>
+        </div>
+        <div *ngIf="!isNormalCustomer">
+            <mat-label>Discount %</mat-label>
+            <mat-form-field appearance="outline" style="padding-left: 82px;">
+                    <mat-label>Discount</mat-label>
+                    <input matInput formControlName="discount" />
+            </mat-form-field>
+        </div>
+        <div>
+                <mat-label>Total Price</mat-label>
+                <mat-form-field appearance="outline" style="padding-left: 82px;">
+                        <mat-label>Total Price</mat-label>
+                        <input matInput formControlName="totalPrice"/>                
+               </mat-form-field>
+        </div>  
+        <div>
+        <span>
+            <button type="button" mat-raised-button color="primary" (click)="Calculate()">Calculate</button>
+        </span>
+        <span style="padding-left: 10px;padding-right: 10px;">
+            <button type="button" mat-raised-button color="primary" (click) = "DisplayPrice()">Print to Screen</button>
+        </span>
+        <span>
+            <button type="button" mat-raised-button color="primary" (click)="DisplayPDF()">Print to PDF</button>
+        </span>
+        <span style="padding-left: 10px;">
+            <button type="button" mat-raised-button color="primary" (click) = "DisplayPaper()">Print to Paper</button>
+        </span>
+        </div>
+</form>
